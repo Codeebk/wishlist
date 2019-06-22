@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <h1 class=>Wish List</h1>
+        <hr />
+        
+        {% if items|length == 0 %}
+            <p>There are no items in your Wish List</p>
+        {% else %}
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Delete</th>
+                </tr>
+                    {% for item in items %}
+                <tr>
+                        <td><a href="{% url 'detail' item.id %}">{{ item.description }}</a></td>
+                        <td><a href="{% url 'items_delete' item.id %}" class="btn">x</a></td>
+                </tr>
+                    {% endfor %}
+            </table>
+        {% endif %}
+        <br>
+        <a href="{% url 'items_create' %}" class="btn">Add a Wish List Item</a>
+</body>
+</html>
